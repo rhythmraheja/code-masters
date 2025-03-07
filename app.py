@@ -4,7 +4,7 @@ from models import db
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 from config import CurrentConfig
-from routes import *
+
 
 app = Flask(__name__)
 app.config.from_object(CurrentConfig)
@@ -28,6 +28,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 bcrypt = Bcrypt(app)
+
+from routes import *
 
 def check_and_insert_teacher():
     """Check if a teacher exists and insert if not."""

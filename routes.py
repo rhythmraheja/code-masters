@@ -11,7 +11,10 @@ from wtforms.validators import optional
 
 from forms import StudentSignUpForm, StudentLoginForm, TeacherLoginForm, TeacherSignUpForm
 from models import Student, Teacher, Assignment, Question, Testcase, Submission
-from app import app, db, bcrypt
+from app import db, bcrypt  # Keep only the required imports
+
+# Use 'current_app' instead of direct 'app' import
+from flask import current_app as app
 from datetime import datetime
 from io import StringIO
 import os
