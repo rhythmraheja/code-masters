@@ -8,6 +8,8 @@ from werkzeug.utils import secure_filename
 from subprocess import Popen, PIPE, run
 from sqlalchemy.sql import func
 from wtforms.validators import optional
+import pymysql
+pymysql.install_as_MySQLdb()
 
 from forms import StudentSignUpForm, StudentLoginForm, TeacherLoginForm, TeacherSignUpForm
 from models import Student, Teacher, Assignment, Question, Testcase, Submission

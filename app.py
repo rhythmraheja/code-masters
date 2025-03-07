@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from models import db
+from models import *
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 from config import CurrentConfig
