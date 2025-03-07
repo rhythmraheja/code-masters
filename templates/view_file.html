@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View File: {{ filename }}</title>
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Viewing File: {{ filename }}</h1>
+    <pre>{{ content }}</pre>
+    
+    <!-- Button to go back to the previous page -->
+    <button onclick="window.history.back()">Go Back</button>
+</body>
+</html>

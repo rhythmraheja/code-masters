@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* Background styling */
+    body {
+        font-family: Arial, sans-serif;
+        background: url('https://plus.unsplash.com/premium_photo-1685656440548-d8cad874d5d8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGFyayUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D') no-repeat center center/cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Glassmorphism container */
+    .glass-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        width: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    input[type="submit"] {
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Navigation links */
+    .links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .links a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        padding: 8px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .links a:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+</style>
+
+<div class="glass-container">
+    <h1>Create Assignment</h1>
+    <form method="POST">
+        <label for="topic">Topic:</label>
+        <input type="text" name="topic" placeholder="Enter assignment topic" required>
+
+        <label for="date1">Assignment Date (Group 1):</label>
+        <input type="date" name="date1" required>
+
+        <label for="date2">Assignment Date (Group 2):</label>
+        <input type="date" name="date2" required>
+
+        <label for="due_date1">Due Date (Group 1):</label>
+        <input type="date" name="due_date1" required>
+
+        <label for="due_date2">Due Date (Group 2):</label>
+        <input type="date" name="due_date2" required>
+
+        <label for="total_marks">Total Marks:</label>
+        <input type="number" step="0.01" name="total_marks" placeholder="Total marks" required>
+
+        <label for="num_questions">Number of Questions:</label>
+        <input type="number" name="num_questions" placeholder="Number of questions" required>
+
+        <input type="submit" value="Create Assignment">
+    </form>
+    
+    <div class="links">
+        <a href="{{ url_for('teacher_dashboard') }}">Back to Teacher Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</div>
+
+{% endblock %}

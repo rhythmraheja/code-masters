@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Heading -->
+    <header class="text-center my-4">
+        <h1 class="display-4 text-glow outlined-text">Welcome to the JIIT Study Portal</h1>
+    </header>
+
+    <!-- Button Section -->
+    <div class="container d-flex justify-content-center align-items-center my-5">
+        <div class="row w-100 justify-content-center">
+            <!-- Student Section -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center p-4 glassmorphism">
+                    <a href="{{ url_for('student_signup') }}" class="btn btn-outline-light mb-2 w-100 py-3 rounded-pill shadow-lg hover-scale animated-button">Sign Up as Student</a>
+                    <a href="{{ url_for('student_login') }}" class="btn btn-outline-light w-100 py-3 rounded-pill shadow-lg hover-scale animated-button">Login as Student</a>
+                </div>
+            </div>
+
+            <!-- Teacher Section -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center p-4 glassmorphism">
+                    <a href="{{ url_for('teacher_signup') }}" class="btn btn-outline-light mb-2 w-100 py-3 rounded-pill shadow-lg hover-scale animated-button">Sign Up as Teacher</a>
+                    <a href="{{ url_for('teacher_login') }}" class="btn btn-outline-light w-100 py-3 rounded-pill shadow-lg hover-scale animated-button">Login as Teacher</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-3 text-light mt-auto">
+        <p class="mb-0">© 2025 JIIT Study Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- Styles for background, effects, and animations -->
+    <style>
+        /* Background with glassmorphism */
+        body {
+            background: url('https://www.dialeducation.com/assets/images/gallery/gallery_15935206071.jpg') no-repeat center center/cover;
+            backdrop-filter: blur(5px);
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        /* Center button section */
+        .container.d-flex {
+            min-height: 60vh;
+        }
+
+        /* Glassmorphism effect for cards */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .glassmorphism:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .animated-button {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Thin black border around text */
+        .outlined-text {
+            color: #b5b0b0; /* greyish Color */
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Student Marks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <style>
+        /* Background Image */
+        body {
+            background: url('https://static.vecteezy.com/system/resources/previews/006/852/804/non_2x/abstract-blue-background-simple-design-for-your-website-free-vector.jpg') no-repeat center center/cover;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Full-Screen Glassmorphic Container */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 95vw;  /* Almost full width */
+            height: 95vh; /* Almost full height */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Table Styling */
+        .table-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 10px; /* Avoid scrollbar overlap */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table, th, td {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        th {
+            background: rgba(0, 123, 255, 0.7);
+            color: white;
+        }
+
+        /* Buttons */
+        .btn-primary, .btn-secondary {
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <h1 class="text-center mb-4">All Student Marks</h1>
+
+        <div class="table-container">
+            <h2>Group 1 Marks</h2>
+            <a href="{{ url_for('download_group_csv', group=1) }}" class="btn btn-primary mb-3">Download Group 1 Marks as CSV</a>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl. No.</th>
+                            <th>Student Name</th>
+                            <th>Student Roll</th>
+                            {% for assignment in assignments %}
+                                <th>Day {{ loop.index }}<br>{{ assignment.topic }}<br>{{ assignment.date1 }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set sl_no = 1 %}
+                        {% for student_id, student_data in student_marks.items() %}
+                            {% if student_data.group == 'A1' %}
+                                <tr>
+                                    <td>{{ sl_no }}</td>
+                                    <td>{{ student_data.name }}</td>
+                                    <td>{{ student_data.roll }}</td>
+                                    {% for assignment in student_data.assignments %}
+                                        <td>{{ assignment.marks }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% set sl_no = sl_no + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+
+            <h2>Group 2 Marks</h2>
+            <a href="{{ url_for('download_group_csv', group=2) }}" class="btn btn-primary mb-3">Download Group 2 Marks as CSV</a>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl. No.</th>
+                            <th>Student Name</th>
+                            <th>Student Roll</th>
+                            {% for assignment in assignments %}
+                                <th>Day {{ loop.index }}<br>{{ assignment.topic }}<br>{{ assignment.date2 }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set sl_no = 1 %}
+                        {% for student_id, student_data in student_marks.items() %}
+                            {% if student_data.group == 'A2' %}
+                                <tr>
+                                    <td>{{ sl_no }}</td>
+                                    <td>{{ student_data.name }}</td>
+                                    <td>{{ student_data.roll }}</td>
+                                    {% for assignment in student_data.assignments %}
+                                        <td>{{ assignment.marks }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% set sl_no = sl_no + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('teacher_dashboard') }}" class="btn btn-secondary">Back to Teacher Dashboard</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

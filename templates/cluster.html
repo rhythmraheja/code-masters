@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Cluster Table</title>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid black;
+                font-family: Arial, sans-serif;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+                text-align: center;
+            }
+            thead {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            tr:nth-child(odd) {
+                background-color: #ffffff;
+            }
+            tr.green {
+                background-color: #c9f7c9; /* Green for outliers */
+            }
+            tr.red {
+                background-color: #ffcccc; /* Red for the largest cluster */
+            }
+            tr.yellow {
+                background-color: #ffff99; /* Yellow for other clusters */
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Cluster Overview</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cluster ID</th>
+                    <th>Files</th>
+                    <th>Total Files</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <tr class="red">
+                    <td>0</td>
+                    <td>Student_Garv_Nangia.py, Student_Mehul_Agarwal.py, Student_Shourya.py, Student_Vishal.py, Student_Yashi_Jaitly.py</td>
+                    <td>5</td>
+                </tr>
+        
+                <tr class="green">
+                    <td>Outliers</td>
+                    <td>Student_Kapil.py, Student_Rhythm_Raheja.py, Student_Satvik.py, Student_Vasu.py</td>
+                    <td>4</td>
+                </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    

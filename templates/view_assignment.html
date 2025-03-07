@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://imgs.search.brave.com/_LVFeQoxNEy9h86nwdNoG-S0yQAG6afz5UYJGOcrfgs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9hYnN0cmFjdC10/ZXh0dXJlZC1iYWNr/Z3JvdW5kLXN1cmZh/Y2VfMjA0MTk3LTEy/MDc3LmpwZz9zZW10/PWFpc19oeWJyaWQ') no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(8px);
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        .btn {
+            transition: 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        .list-group-item {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+        }
+        .list-group-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .card-header {
+            background: rgba(0, 0, 0, 0.6) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <h1 class="text-center">Assignment: {{ assignment.topic }}</h1>
+            <div class="card-body">
+                <p><strong>Total Marks:</strong> {{ assignment.total_marks }}</p>
+                <p><strong>Number of Questions Allowed:</strong> {{ assignment.num_questions }}</p>
+                <p><strong>Assignment Date (Group 1):</strong> {{ assignment.date1 }}</p>
+                <p><strong>Assignment Date (Group 2):</strong> {{ assignment.date2 }}</p>
+                <p><strong>Due Date (Group 1):</strong> {{ assignment.due_date1 }}</p>
+                <p><strong>Due Date (Group 2):</strong> {{ assignment.due_date2 }}</p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('edit_assignment', assignment_id=assignment.id) }}" class="btn btn-warning">Edit Assignment</a>
+                <a href="{{ url_for('check_similarity', assignment_id=assignment.id) }}" class="btn btn-info">Check Code Similarity</a>
+                <a href="{{ url_for('view_uploads', assignment_id=assignment.id) }}" class="btn btn-info">View Submitted Codes</a>
+            </div>
+        </div>
+        <div class="mt-4 glass-card">
+            <h2>Questions:</h2>
+            <ul class="list-group">
+                {% for detail in question_details %}
+                    <li class="list-group-item">
+                        <h5>Question: {{ detail.question.question }}</h5>
+                        <p><strong>Marks:</strong> {{ detail.question.marks }}</p>
+                        <p><strong>Type:</strong> {% if detail.question.optional %} Optional {% else %} Mandatory {% endif %}</p>
+                        <a href="{{ url_for('edit_question', question_id=detail.question.id) }}" class="btn btn-secondary btn-sm">Edit Question</a>
+                        <h6>Test Cases:</h6>
+                        <ul class="list-group">
+                            {% for testcase in detail.testcases %}
+                                <li class="list-group-item">
+                                    Test Case: {{ testcase.case }} - Expected Output: {{ testcase.output }}
+                                    <a href="{{ url_for('edit_testcase', testcase_id=testcase.id) }}" class="btn btn-outline-primary btn-sm float-end">Edit</a>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">No test cases available.</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="list-group-item text-center text-muted">No questions available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mt-4 glass-card text-center">
+            <p><strong>Current Total Marks of Questions:</strong> {{ total_marks }}</p>
+            {% if questions|length > assignment.num_questions or total_marks > assignment.total_marks %}
+                <div class="alert alert-warning">
+                    Maximum questions or marks limit exceeded!
+                </div>
+            {% else %}
+                <a href="{{ url_for('add_questions', assignment_id=assignment.id) }}" class="btn btn-success">Add New Question</a>
+            {% endif %}
+        </div>
+        <div class="mt-4 d-flex justify-content-between glass-card">
+            <a href="{{ url_for('view_assignments') }}" class="btn btn-secondary">Back to Assignments</a>
+            <a href="{{ url_for('teacher_dashboard') }}" class="btn btn-secondary">Back to Teacher Dashboard</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Code Similarity Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 1rem;
+                background-color: #f9f9f9;
+            }
+            .container {
+                max-width: 900px;
+                margin: auto;
+                background: #fff;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            h1, h2 {
+                text-align: center;
+                color: #333;
+            }
+            .cluster {
+                margin-bottom: 1rem;
+            }
+            .visualization {
+                display: none;
+                margin-top: 1rem;
+            }
+            .btn {
+                display: inline-block;
+                margin: 0.5rem 0;
+                padding: 0.5rem 1rem;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+            .btn:hover {
+                background-color: #0056b3;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0.5rem 0;
+            }
+        </style>
+        <script>
+            function toggleVisualization(id) {
+                const section = document.getElementById(id);
+                section.style.display = section.style.display === "none" ? "block" : "none";
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Code Similarity Report</h1>
+            <h2>Clusters</h2>
+    <h3>Cluster 0</h3>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Garv_Nangia.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Garv_Nangia.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Garv_Nangia.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Garv_Nangia.py_ast.png') }}" alt="AST for Student_Garv_Nangia.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Garv_Nangia.py_tokens.png') }}" alt="Token Frequency for Student_Garv_Nangia.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Garv_Nangia.py_cfg.png') }}" alt="CFG for Student_Garv_Nangia.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Mehul_Agarwal.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Mehul_Agarwal.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Mehul_Agarwal.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Mehul_Agarwal.py_ast.png') }}" alt="AST for Student_Mehul_Agarwal.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Mehul_Agarwal.py_tokens.png') }}" alt="Token Frequency for Student_Mehul_Agarwal.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Mehul_Agarwal.py_cfg.png') }}" alt="CFG for Student_Mehul_Agarwal.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Shourya.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Shourya.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Shourya.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Shourya.py_ast.png') }}" alt="AST for Student_Shourya.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Shourya.py_tokens.png') }}" alt="Token Frequency for Student_Shourya.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Shourya.py_cfg.png') }}" alt="CFG for Student_Shourya.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Vishal.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Vishal.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Vishal.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Vishal.py_ast.png') }}" alt="AST for Student_Vishal.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Vishal.py_tokens.png') }}" alt="Token Frequency for Student_Vishal.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Vishal.py_cfg.png') }}" alt="CFG for Student_Vishal.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Yashi_Jaitly.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Yashi_Jaitly.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Yashi_Jaitly.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Yashi_Jaitly.py_ast.png') }}" alt="AST for Student_Yashi_Jaitly.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Yashi_Jaitly.py_tokens.png') }}" alt="Token Frequency for Student_Yashi_Jaitly.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Yashi_Jaitly.py_cfg.png') }}" alt="CFG for Student_Yashi_Jaitly.py">
+                </div></div><h3>Outliers</h3>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Kapil.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Kapil.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Kapil.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Kapil.py_ast.png') }}" alt="AST for Student_Kapil.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Kapil.py_tokens.png') }}" alt="Token Frequency for Student_Kapil.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Kapil.py_cfg.png') }}" alt="CFG for Student_Kapil.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Rhythm_Raheja.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Rhythm_Raheja.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Rhythm_Raheja.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Rhythm_Raheja.py_ast.png') }}" alt="AST for Student_Rhythm_Raheja.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Rhythm_Raheja.py_tokens.png') }}" alt="Token Frequency for Student_Rhythm_Raheja.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Rhythm_Raheja.py_cfg.png') }}" alt="CFG for Student_Rhythm_Raheja.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Satvik.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Satvik.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Satvik.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Satvik.py_ast.png') }}" alt="AST for Student_Satvik.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Satvik.py_tokens.png') }}" alt="Token Frequency for Student_Satvik.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Satvik.py_cfg.png') }}" alt="CFG for Student_Satvik.py">
+                </div></div>
+            <div class="cluster">
+                <p>
+                    <strong>Student_Vasu.py</strong>
+                    <button class="btn" onclick="toggleVisualization('Student_Vasu.py-visualizations')">View Visualizations</button>
+                </p>
+                <div id="Student_Vasu.py-visualizations" class="visualization">
+            
+                    <p><strong>AST:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Vasu.py_ast.png') }}" alt="AST for Student_Vasu.py">
+                
+                    <p><strong>Token Frequency:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Vasu.py_tokens.png') }}" alt="Token Frequency for Student_Vasu.py">
+                
+                    <p><strong>Control Flow:</strong></p>
+                    <img src="{{ url_for('custom_static', filename='Student_Vasu.py_cfg.png') }}" alt="CFG for Student_Vasu.py">
+                </div></div>
+        </div>
+    </body>
+    </html>
+    

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Dark Mode Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Dark Card */
+        .dashboard-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 950px;
+            width: 90%;
+            color: white;
+            box-shadow: 0px 10px 25px rgba(0, 255, 255, 0.2);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: cyan;
+            text-shadow: 0px 4px 15px rgba(0, 255, 255, 0.8);
+        }
+
+        p.lead {
+            font-size: 1.3rem;
+            color: rgba(200, 200, 200, 0.9);
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            background: rgba(0, 255, 255, 0.2);
+            color: cyan;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: rgba(0, 255, 255, 0.5);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        /* Assignments */
+        .assignment-card {
+            background: rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            color: cyan;
+            transition: 0.4s ease-in-out;
+            box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+        }
+
+        /* Hover Effect */
+        .assignment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 0px 30px rgba(0, 255, 255, 0.8);
+            background: rgba(0, 255, 255, 0.2);
+        }
+
+        /* Floating Neon Particles */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: cyan;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0px 0px 10px cyan;
+            animation: floatParticles 6s infinite alternate ease-in-out;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatParticles {
+            from {
+                transform: translateY(0px);
+            }
+            to {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Particles -->
+    <div class="particle" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+    <div class="particle" style="top: 20%; left: 50%; animation-delay: 1s;"></div>
+    <div class="particle" style="top: 40%; left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="top: 60%; left: 70%; animation-delay: 3s;"></div>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard-container">
+        <h1>Student Dashboard</h1>
+        <p class="lead">Welcome, {{ student_data.name }}!</p>
+        <p>Not {{ student_data.name }}? <a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a></p>
+
+        <!-- Assignments Section -->
+        <h3 class="mt-4">Assignments</h3>
+        {% if assignments|length >= 1 %}
+            <div class="assignment-list">
+                {% for assignment in assignments %}
+                    <a href="{{ url_for('view_assignment_student', assignment_id=assignment.id) }}" class="list-group-item list-group-item-action assignment-card">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ assignment.topic }}</h5>
+                            {% if student_group==1 %}
+                                <small>Due Date: {{ assignment.due_date1 }}</small>
+                            {% else %}
+                                <small>Due Date: {{ assignment.due_date2 }}</small>
+                            {% endif %}
+                        </div>
+                        <p class="mb-1">View questions for this assignment.</p>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info" role="alert" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                You currently have no upcoming assignments.
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

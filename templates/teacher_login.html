@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="glassmorphism text-white p-5 rounded shadow-lg text-center">
+        <h2 class="outlined-text mb-4">Teacher Login</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group mb-3">
+                {{ form.email.label(class="form-label text-start w-100") }}
+                {{ form.email(class="form-control form-control-lg", style="height: 50px;") }}
+            </div>
+
+            <div class="form-group mb-3">
+                {{ form.password.label(class="form-label text-start w-100") }}
+                {{ form.password(class="form-control form-control-lg", style="height: 50px;") }}
+            </div>
+
+            <div>
+                {{ form.submit(class="btn btn-primary w-100 py-3 rounded shadow-lg") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Styles for Glassmorphism & Background -->
+<style>
+    /* Background Image */
+    body {
+        background: url('https://imgs.search.brave.com/keY0jIk2dQp5ivPSU7bU-dcVbHDtJNAPwzgLc_lYDGY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9j/b2RpbmctbWFuXzEw/OTgtMTgwODQuanBn/P3NlbXQ9YWlzX2h5/YnJpZA') no-repeat center center/cover;
+        backdrop-filter: blur(5px);
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Glassmorphism effect */
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.3); /* Transparent */
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 450px;
+        text-align: center;
+    }
+
+    /* Heading styling */
+    .outlined-text {
+        color: #b5b0b0;
+        text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+        font-size: 32px; /* Increased for better visibility */
+        font-weight: bold;
+    }
+
+    /* Form controls */
+    .form-control {
+        background: rgba(255, 255, 255, 0.8);
+        color: black;
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .form-control:focus {
+        background: white;
+        color: black;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Button */
+    .btn-primary {
+        background: #4a90e2;
+        border: none;
+        font-size: 20px;
+    }
+
+    .btn-primary:hover {
+        background: #357ABD;
+    }
+</style>
+{% endblock %}
