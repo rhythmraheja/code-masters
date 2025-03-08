@@ -18,10 +18,11 @@ from models import Student, Teacher, Assignment, Question, Testcase, Submission
 from forms import StudentSignUpForm, StudentLoginForm, TeacherLoginForm, TeacherSignUpForm
 
 # Import initialized instances from app.py
-from app import db, bcrypt, login_manager
+from app import db, bcrypt  # Removed login_manager import (initialized in app.py)
 
 # Utility modules
 from check_sim import *  # If used, otherwise remove
+
 
 
 
