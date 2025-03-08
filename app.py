@@ -12,7 +12,7 @@ from config import CurrentConfig
 app = Flask(__name__, static_folder="static")
 with app.app_context():
     app.config.from_object(CurrentConfig)
-    db = SQLAlchemy(app)
+    db = SQLAlchemy()
     
 
 # Load environment variables
