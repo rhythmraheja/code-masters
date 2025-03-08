@@ -1,26 +1,29 @@
-from check_sim import *
+import os
 import subprocess
-#from check_sim import *
-from IPython.utils.capture import capture_output
-from flask import render_template, request, redirect, url_for, flash, session, make_response, Response
-from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from werkzeug.utils import secure_filename
-from subprocess import Popen, PIPE, run
-from sqlalchemy.sql import func
-from wtforms.validators import optional
-import pymysql
-pymysql.install_as_MySQLdb()
-
-from forms import StudentSignUpForm, StudentLoginForm, TeacherLoginForm, TeacherSignUpForm
-from models import Student, Teacher, Assignment, Question, Testcase, Submission
-from app import db, bcrypt  # Keep only the required imports
-
-# Use 'current_app' instead of direct 'app' import
-from flask import current_app as app
+import csv
 from datetime import datetime
 from io import StringIO
-import os
-import csv
+
+from flask import (
+    render_template, request, redirect, url_for, flash, session, make_response, Response, 
+    send_file, send_from_directory, abort, jsonify, current_app as app
+)
+from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.utils import secure_filename
+from sqlalchemy.sql import func
+from wtforms.validators import optional
+
+# Database & Forms
+from models import Student, Teacher, Assignment, Question, Testcase, Submission
+from forms import StudentSignUpForm, StudentLoginForm, TeacherLoginForm, TeacherSignUpForm
+
+# Import initialized instances from app.py
+from app import db, bcrypt, login_manager
+
+# Utility modules
+from check_sim import *  # If used, otherwise remove
+
+
 
 
 # Configuration for file upload
@@ -30,9 +33,6 @@ ALLOWED_EXTENSIONS = {'py'}
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # Initialize Flask-Login
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'index'  
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -211,7 +211,7 @@ def create_assignment():
 
     return render_template('create_assignment.html')
 
-import os
+
 
 def create_new_folder(folder_path):
     try:
@@ -597,7 +597,7 @@ def view_file(filename,topic):
         return f"Error: {e}", 404
 
 
-from flask import send_from_directory
+
 
 @app.route('/download/<filename>/<string:topic>', methods=['GET'])
 def download_file(filename,topic):
@@ -605,7 +605,7 @@ def download_file(filename,topic):
     return send_from_directory(file_path, filename, as_attachment=True)
 
 
-from flask import jsonify
+
 
 @app.route('/view_uploads/<int:assignment_id>')
 def view_uploads(assignment_id):
@@ -623,7 +623,7 @@ def view_uploads(assignment_id):
     return render_template('view_uploads.html', uploads=uploads, topic=topic)
 
 
-import os
+
 
 def list_files_with_details(folder_path):
     """
@@ -834,8 +834,7 @@ def download_group_csv(group):
     filename = f"Group_{group_name}_Marks.csv"
     return Response(csv_data, mimetype='text/csv', headers={"Content-Disposition": f"attachment;filename={filename}"})
 
-from flask import Flask, send_from_directory
-import os
+
 
 
 @app.route('/custom_static/<filename>')
@@ -844,12 +843,7 @@ def custom_static(filename):
    # report_dir = Path(r'C:\Users\Rhythm\OneDrive\Desktop\Online_Programming_Assignment_Portal-main (2)\Online_Programming_Assignment_Portal-main\Online_Programming_Assignment_Portal-main\src\report')
     return send_from_directory("report", filename)
 
-from flask import send_file
 
-
-
-import os
-from flask import send_file, abort
 
 @app.route('/view_pdf')
 def view_pdf():
