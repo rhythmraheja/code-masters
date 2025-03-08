@@ -3,14 +3,16 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
-
+import pymysql
+from flask_sqlalchemy import SQLAlchemy
 from config import CurrentConfig
-from models import db, Teacher
+
 
 
 app = Flask(__name__, static_folder="static")
 with app.app_context():
     app.config.from_object(CurrentConfig)
+    db = SQLAlchemy(app)
     
 
 # Load environment variables

@@ -1,9 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-import pymysql
-pymysql.install_as_MySQLdb()
-
-db = SQLAlchemy()
+from app import db
 
 class Student(UserMixin, db.Model):
     __tablename__ = 'Student'  # Table name in the database
