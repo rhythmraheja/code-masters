@@ -27,7 +27,6 @@ from check_sim import *  # If used, otherwise remove
 
 
 
-
 # Configuration for file upload
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'py'}
@@ -396,6 +395,11 @@ def view_assignment(assignment_id):
                            question_details=question_details,
                            total_marks=total_question_marks,
                            submission_details=None)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'image'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/view_assignment_student/<int:assignment_id>', methods=['GET'])
 @login_required

@@ -7,9 +7,11 @@ import os
 from config import CurrentConfig
 from models import db, Teacher
 
+
 app = Flask(__name__, static_folder="static")
 with app.app_context():
     app.config.from_object(CurrentConfig)
+    
 
 # Load environment variables
 
