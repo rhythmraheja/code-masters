@@ -25,10 +25,6 @@ login_manager.init_app(app)
 # Import routes AFTER initializing extensions
 from routes import *
 
-@login_manager.user_loader
-def load_user(user_id):
-    return Teacher.query.get(int(user_id))
-
 def check_and_insert_teacher():
     """Check if a teacher exists and insert if not."""
     name = 'Ashish'
@@ -45,8 +41,10 @@ def check_and_insert_teacher():
             print(f"New teacher {name} inserted successfully!")
 
 # Run database check at startup
-with app.app_context():
-    check_and_insert_teacher()
+@app.before_request
+def startup():
+    with app.app_context():
+        check_and_insert_teacher()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
